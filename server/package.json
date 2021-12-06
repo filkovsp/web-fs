@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server side for web-fs",
+  "main": "server.js",
+  "dependencies": {
+    "cross-env": "5.0.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "pretty-bytes": "^5.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "author": "filkovsp",
+  "license": "MIT"
+}
