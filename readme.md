@@ -2,22 +2,28 @@
 * [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces)
 * [Yarn create-react-app](https://yarnpkg.com/package/create-react-app)
 * [Using Create-React-App In A Monorepo](https://frontend-digest.com/using-create-react-app-in-a-monorepo-a4e6f25be7aa)
-* [How to structure your project and manage static resources in React Native](https://www.freecodecamp.org/news/how-to-structure-your-project-and-manage-static-resources-in-react-native-6f4cfc947d92)
 
-### install dependencies:
+### Install dependencies:
 ```sh
+git clone https://github.com/filkovsp/web-fs.git
+cd web-fs
+
 yarn install
 ```
-
-### start client:
+### Start the whole bundle at once:
 ```sh
-yarn --cwd client start
+yarn start
 ```
-
-### add new dependency:
-```sh
-yarn add react react-dom
-```
-
-### next steps:
-* [Async/Dynamic import/export](https://webreflection.medium.com/javascript-dynamic-import-export-b0e8775a59d4)
+### Optional:
+* Add new dependency:
+    ```sh
+    yarn add react react-dom
+    ```
+* Start client only:
+    ```sh
+    yarn --cwd client start
+    ```
+* Start server only:
+    ```sh
+    yarn --cwd client start
+    ```
