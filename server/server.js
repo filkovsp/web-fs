@@ -45,44 +45,41 @@ app.get("/content", function(request, response) {
       if (stats.isDirectory()) {        
         // if folder, read contect, build the response and send as `content`:
         fs.readdir(contentPath, {encoding : "utf-8", withFileTypes : true}, (err, listing) => {
-          if (listing.length > 0) {
-              // build content object:
-              const content = {
-                  name: path.parse(contentPath).name,
-                  type: "folder",
-                  path: request.query.path,
-                  items: listing.map(item => {  
-                    const itemInfo = new Object();
-                    // assign default properties:
-                    Object.assign(itemInfo, {
-                      name: item.name,
-                      path: `${request.query.path}/${item.name}`
-                    });
+              
+          // build content object:
+          const content = {
+              name: path.parse(contentPath).name,
+              type: "folder",
+              path: request.query.path,
+              items: listing.length == 0 ? [] : listing.map(item => {  
+                const itemInfo = new Object();
+                // assign default properties:
+                Object.assign(itemInfo, {
+                  name: item.name,
+                  path: `${request.query.path}/${item.name}`
+                });
 
-                    if(item.isFile()) {
-                      // assign file-specific prperties:
-                      Object.assign(itemInfo, {
-                        type: "file",
-                        size: prettyBytes(fs.lstatSync(`${contentPath}/${item.name}`).size),
-                      });
-                    } else {
-                      // assign folder-specific prperties:
-                      Object.assign(itemInfo, {
-                        type: "folder"
-                      });
-                    }
-                    return itemInfo;
-                  })
-              };
-              
-              // TODO: sort `res` by
-              // 1) Folders first, in alphabetical order
-              // 2) Files then, in alphabetical order
-              
-              response.json(content);
-            } else {
-              response.status(200).send([]);
-            }
+                if(item.isFile()) {
+                  // assign file-specific prperties:
+                  Object.assign(itemInfo, {
+                    type: "file",
+                    size: prettyBytes(fs.lstatSync(`${contentPath}/${item.name}`).size),
+                  });
+                } else {
+                  // assign folder-specific prperties:
+                  Object.assign(itemInfo, {
+                    type: "folder"
+                  });
+                }
+                return itemInfo;
+              })
+            };
+            
+            // TODO: sort `res` by
+            // 1) Folders first, in alphabetical order
+            // 2) Files then, in alphabetical order
+            
+            response.json(content);
         });
 
       } else {
