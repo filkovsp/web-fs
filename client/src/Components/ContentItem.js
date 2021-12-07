@@ -1,4 +1,5 @@
 import React from 'react';
+import "./ContentItem.css";
 
 function ContentItem({item, setPath}) {
     const folderClickHandler = (path) => {

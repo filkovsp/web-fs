@@ -1,0 +1,12 @@
+.file:hover {
+    font-weight: bold;
+}
+
+.folder {
+    text-decoration: underline;
+}
+
+.folder:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
