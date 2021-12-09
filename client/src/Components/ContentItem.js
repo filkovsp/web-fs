@@ -1,4 +1,3 @@
-import React from 'react';
 import "./ContentItem.css";
 
 function ContentItem({item, setPath}) {
@@ -19,16 +18,21 @@ function ContentItem({item, setPath}) {
         });
     };
 
+    // TODO: parametrize back-end server with
+    // process.env.SERVER_IP:process.env.SERVER_PORT
     if(item.type === "folder") {
         return(
             <>
-                <span className="folder" onClick={() => folderClickHandler(`http://192.168.0.90:3010/content?path=${item.path}`)}>{item.name}</span>
+                <span className="folder" onClick={
+                        () => folderClickHandler(`http://localhost:3010/content?path=${item.path}`)
+                    }>{item.name}</span>
             </>
         );
     } else {
         return (
             <>
-                <a className="file" href={`http://192.168.0.90:3010/content?path=${item.path}`} target="_blank" rel="noreferrer">{item.name}</a> : {item.size}
+                <a className="file" rel="noreferrer" target="_blank"
+                    href={`http://localhost:3010/content?path=${item.path}`}>{item.name}</a> : {item.size}
             </>
         );
     }

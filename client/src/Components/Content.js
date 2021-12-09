@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import ContentItem from "./ContentItem";
 
 function Content({path}) {
     const [files, setFiles] = useState(null);
 
     useEffect(() => {
-        fetch(`http://192.168.0.90:3010/content?path=${path}`)
+        // TODO: parametrize back-end server with
+        // process.env.SERVER_IP:process.env.SERVER_PORT
+        fetch(`http://localhost:3010/content?path=${path}`)
         .then(response => {
             if (response.status === 200) {
                 return response.json();
@@ -24,7 +26,6 @@ function Content({path}) {
     if(files !== null) {
         return (
             <>
-                <h2>{files.path}</h2>
                 <ul>
                 {
                     files.items.map((item, idx) => {
