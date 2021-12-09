@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import ContentItem from "./ContentItem";
+import Breadcrumbs from "./Breadcrumbs";
 
 function Content({path}) {
     const [files, setFiles] = useState(null);
@@ -26,6 +27,7 @@ function Content({path}) {
     if(files !== null) {
         return (
             <>
+                <Breadcrumbs path={files.path} setPath={setFiles} />
                 <ul>
                 {
                     files.items.map((item, idx) => {

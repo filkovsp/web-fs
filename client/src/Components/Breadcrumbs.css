@@ -1,0 +1,21 @@
+ul.breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+ul.breadcrumbs > li {
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+ul.breadcrumbs > li:hover {
+    color: darkblue;
+}
+
+ul.breadcrumbs > li::before {
+    content: "/";
+    padding-right: 0.2rem;
+    margin-left: 0.2rem;
+}
