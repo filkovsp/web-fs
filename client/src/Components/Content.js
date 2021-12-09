@@ -31,7 +31,10 @@ function Content({path}) {
                 <ul>
                 {
                     files.items.map((item, idx) => {
-                        return <li key={idx}><ContentItem key={idx} item={item} setPath={setFiles} /></li>
+                        return (
+                            <li key={`${idx}${item.name.replaceAll(/[^a-z0-9]+/ig, "")}`}>
+                                <ContentItem key={idx} item={item} setPath={setFiles} />
+                            </li>);
                     })
                 }
                 </ul>
