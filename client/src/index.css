@@ -1,13 +1,196 @@
-body {
-  margin: 50px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    background-color: #23232e;
+    font-size: 14px;
+    font-weight: normal;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    z-index: -4;
+}
+
+/*-------------------------
+    Search box
+-------------------------*/
+.filemanager .search {
+    position: absolute;
+    padding-right: 30px;
+    cursor: pointer;
+    right: 0;
+    font-size: 17px;
+    color: #ffffff;
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+.filemanager .search:before {
+    content: '';
+    position: absolute;
+    margin-top:12px;
+    width: 10px;
+    height: 11px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    right: 8px;
+}
+
+.filemanager .search:after {
+    content: '';
+    width: 3px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    position: absolute;
+    top: 23px;
+    right: 6px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.filemanager .search input[type=search] {
+    border-radius: 2px;
+    color: #4D535E;
+    background-color: #FFF;
+    width: 250px;
+    height: 44px;
+    margin-left: -215px;
+    padding-left: 20px;
+    text-decoration-color: #4d535e;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    display: none;
+    outline: none;
+    border: none;
+    padding-right: 10px;
+    -webkit-appearance: none;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #4d535e;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #4d535e;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #4d535e;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #4d535e;
+}
+
+.filemanager .nothingfound {
+    background-color: #373743;
+    width: 23em;
+    height: 21em;
+    margin: 0 auto;
+    display: none;
+    font-family: Arial;
+    -webkit-animation: showSlowlyElement 700ms; /* Chrome, Safari, Opera */
+    animation: showSlowlyElement 700ms; /* Standard syntax */
+}
+
+.filemanager .nothingfound .nofiles {
+    margin: 30px auto;
+    top: 3em;
+    border-radius: 50%;
+    position:relative;
+    background-color: #d72f6e;
+    width: 11em;
+    height: 11em;
+    line-height: 11.4em;
+}
+.filemanager .nothingfound .nofiles:after {
+    content: '×';
+    position: absolute;
+    color: #ffffff;
+    font-size: 14em;
+    margin-right: 0.092em;
+    right: 0;
+}
+
+.filemanager .nothingfound span {
+    margin: 0 auto auto 6.8em;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    height: 13px;
+    position: relative;
+    top: 2em;
+}
+
+@media all and (max-width:965px) {
+
+    .filemanager .data div {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes showSlowlyElement {
+    100%       { transform: scale(1); opacity: 1; }
+    0%         { transform: scale(1.2); opacity: 0; }
+}
+
+/* Standard syntax */
+@keyframes showSlowlyElement {
+    100%       { transform: scale(1); opacity: 1; }
+    0%         { transform: scale(1.2); opacity: 0; }
+}
+
+
+/*----------------------------
+    Player area:
+-----------------------------*/
+/* @media all and (max-width: 965px) {} */
+#DOMWindow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+}
+
+.player {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    text-align: center;
+    margin: 0;
+}
+
+.player a,
+.player a:link,
+.player a:visited,
+.player a:hover,
+.player a:active {
+    color: #2980b9;
+}
+
+audio, video {
+    margin: auto;
+}
+
+#control_bar > .playpack {
+    color: #c2fde5;
+    margin: auto 0.8em;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.5em;
 }

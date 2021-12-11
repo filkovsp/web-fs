@@ -26,6 +26,7 @@ function Breadcrumbs({ path, setPath }) {
       {path.split("/").map((folder, idx, arr) => {
         return (
           <li
+            className="folderName"
             key={`${idx}${folder.replaceAll(/[^a-z0-9]+/gi, "")}`}
             onClick={() => {
               const url = `http://${self.hostname}:3010/content?path=${arr.slice(0, idx + 1).join("/")}`;

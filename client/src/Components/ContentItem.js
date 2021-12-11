@@ -21,32 +21,30 @@ function ContentItem({ item, setPath }) {
       });
   };
 
-  // TODO: parametrize back-end server with
-  // process.env.SERVER_IP:process.env.SERVER_PORT
   if (item.type === "folder") {
     return (
-      <>
-        <span
-          className="folder"
-          onClick={() => {
-            const url = `http://${self.hostname}:3010/content?path=${item.path}`;
-            folderClickHandler(url);
-          }}
-        >{item.name}</span>
-      </>
+      <div className="folders" 
+        onClick={() => {
+          const url = `http://${self.hostname}:3010/content?path=${item.path}`;
+          folderClickHandler(url);
+        }}>
+        
+        <span className="icon folder"/>
+        <div className="info">
+          <span className="name">{item.name}</span>
+        </div>
+      </div>
     );
   } else {
     return (
-      <>
-        <a
-          className="file"
-          rel="noreferrer"
-          target="_blank"
-          href={`http://${self.hostname}:3010/content?path=${item.path}`}
-        >
-          {item.name}
-        </a>{` : ${item.size}`}
-      </>
+      <div className="files">
+        <span className="icon file f-mp4">mp4</span>
+        <div className="info">
+          <span className="name" 
+            onClick={()=>window.open(`http://${self.hostname}:3010/content?path=${item.path}`, "_blank")}>{item.name}</span>
+          <span class="details">{item.size}</span>
+        </div>
+      </div>
     );
   }
 }

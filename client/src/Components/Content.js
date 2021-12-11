@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import ContentItem from "./ContentItem";
 import Breadcrumbs from "./Breadcrumbs";
 import LocationContext from "../Contexts/LocationContext";
+import "./Content.css";
 
 export default function Content({ path }) {
   const [files, setFiles] = useState(null);
@@ -26,9 +27,9 @@ export default function Content({ path }) {
 
   if (files !== null) {
     return (
-      <>
+      <div className="filemanager">
         <Breadcrumbs path={files.path} setPath={setFiles} />
-        <ul>
+        <ul className="data animated">
           {files.items.map((item, idx) => {
             return (
               <li key={`${idx}${item.name.replaceAll(/[^a-z0-9]+/gi, "")}`}>
@@ -37,9 +38,9 @@ export default function Content({ path }) {
             );
           })}
         </ul>
-      </>
+      </div>
     );
   }
 
-  return <div></div>;
+  return <div className="filemanager"></div>;
 }
