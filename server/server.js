@@ -72,13 +72,14 @@ app.get("/content", function(request, response) {
                   });
                 }
                 return itemInfo;
+              }).sort(function(a, b){
+                if(a.type === "folder" && b.type === "file") { return -1; }
+                if(a.type === "file" && b.type === "folder") { return 1; }
+                if(a.name < b.name) { return -1; }
+                if(a.name > b.name) { return 1; }
+                return 0;
               })
             };
-            
-            // TODO: sort `res` by
-            // 1) Folders first, in alphabetical order
-            // 2) Files then, in alphabetical order
-            
             response.json(content);
         });
 
