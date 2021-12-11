@@ -36,13 +36,14 @@ function ContentItem({ item, setPath }) {
       </div>
     );
   } else {
+    const fileExt = item.name.split(".").at(-1);
     return (
-      <div className="files">
-        <span className="icon file f-mp4">mp4</span>
+      <div className="files"
+        onClick={()=>window.open(`http://${self.hostname}:3010/content?path=${item.path}`, "_blank")}>
+        <span className="icon file f-mp4">{fileExt.length < 5 ? fileExt : ""}</span>
         <div className="info">
-          <span className="name" 
-            onClick={()=>window.open(`http://${self.hostname}:3010/content?path=${item.path}`, "_blank")}>{item.name}</span>
-          <span class="details">{item.size}</span>
+          <span className="name">{item.name}</span>
+          <span className="details">{item.size}</span>
         </div>
       </div>
     );
