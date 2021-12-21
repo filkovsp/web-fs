@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Content from './Components/Content';
-import LocationContext from './Contexts/LocationContext';
+import Content from './Component/Content';
+import LocationContext from './Context/LocationContext';
 
 const self = {
-  hostname: window.location.hostname
+  hostname: window.location.hostname,
+  clientPosrt: 3000,
+  serverPort: 3010
 }
 
 ReactDOM.render(

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import ContentItem from "./ContentItem";
 import Breadcrumbs from "./Breadcrumbs";
-import LocationContext from "../Contexts/LocationContext";
+import LocationContext from "../Context/LocationContext";
 import "./Content.css";
 
 export default function Content({ path }) {
@@ -9,7 +9,7 @@ export default function Content({ path }) {
   const self = useContext(LocationContext);
 
   useEffect(() => {
-    fetch(`http://${self.hostname}:3010/content?path=${path}`)
+    fetch(`http://${self.hostname}:${self.serverPort}/content?path=${path}`)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
