@@ -1,0 +1,41 @@
+.overlay-wrapper {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: block;
+    background-color: rgb(50, 50, 50);
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.overlay-backdrop {
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10001;
+    position: relative;
+}
+
+.overlay-content {
+    width: 90%;
+    height: 90%;
+    position: relative;
+    margin: auto;
+    transition: opacity 0.85s;
+    max-width: 90vw;
+    max-height: 90vh;
+    border: solid 1px #DADDE1;
+    border-radius: 0.5em;
+    color: #DADDE1;
+    text-align: center;
+}

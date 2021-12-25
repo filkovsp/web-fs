@@ -1,12 +1,25 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import ContentItem from "./ContentItem";
 import Breadcrumbs from "./Breadcrumbs";
 import LocationContext from "../Context/LocationContext";
+import Overlay from "./Overlay";
 import "./Content.css";
 
 export default function Content({ path }) {
   const [files, setFiles] = useState(null);
+  const contentLink = useRef(null);
   const self = useContext(LocationContext);
+
+  const [isOpen, setOverlay] = useState(false);
+  const closeOverlay = () => {
+    setOverlay(false);
+    contentLink.current = null;
+  };
+
+  const openOverlay = (url) => {
+    contentLink.current = url;
+    setOverlay(true);
+  };
 
   useEffect(() => {
     fetch(`http://${self.hostname}:${self.serverPort}/content?path=${path}`)
@@ -27,18 +40,21 @@ export default function Content({ path }) {
 
   if (files !== null) {
     return (
-      <div className="filemanager">
-        <Breadcrumbs path={files.path} setPath={setFiles} />
-        <ul className="data animated">
-          {files.items.map((item, idx) => {
-            return (
-              <li key={`${idx}${item.name.replaceAll(/[^a-z0-9]+/gi, "")}`}>
-                <ContentItem key={idx} item={item} setPath={setFiles} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <>
+        <div className="filemanager">
+          <Breadcrumbs path={files.path} setPath={setFiles} />
+          <ul className="data animated">
+            {files.items.map((item, idx) => {
+              return (
+                <li key={`${idx}${item.name.replaceAll(/[^a-z0-9]+/gi, "")}`}>
+                  <ContentItem key={idx} item={item} setPath={setFiles} openHandle={openOverlay}/>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        { isOpen && <Overlay closeOverlay={closeOverlay}></Overlay>}
+      </>
     );
   }
 

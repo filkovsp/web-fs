@@ -2,7 +2,7 @@ import { useContext } from "react";
 import LocationContext from "../Context/LocationContext";
 import "./ContentItem.css";
 
-function ContentItem({ item, setPath }) {
+function ContentItem({ item, setPath, openHandle }) {
   const self = useContext(LocationContext);
   const folderClickHandler = (path) => {
     fetch(path)
@@ -28,7 +28,10 @@ function ContentItem({ item, setPath }) {
           const url = `http://${self.hostname}:${self.serverPort}/content?path=${item.path}`;
           folderClickHandler(url);
         }}>
-        <span className="icon folder"/>
+        <div className="icon-container">
+          <span className="icon folder"/>
+        </div>
+
         <div className="info">
           <span className="name">{item.name}</span>
         </div>
@@ -39,12 +42,17 @@ function ContentItem({ item, setPath }) {
     const url = `http://${self.hostname}:${self.serverPort}/content?path=${item.path}`;
     return (
       <div className="files"
-        onClick={()=>window.open(url, "_blank")}>
+        // onClick={()=>window.open(url, "_blank")}
+           onClick={() => openHandle(url)}
+      >
+        <div className="icon-container">
           <span className={`icon file f${"-".concat(fileExt)}`}>{fileExt.length < 5 ? fileExt : ""}</span>
-          <div className="info">
-              <span className="name">{item.name}</span>
-              <span className="details">{item.size}</span>
-          </div>
+        </div>
+
+        <div className="info">
+            <span className="name">{item.name}</span>
+            <span className="details">{item.size}</span>
+        </div>
       </div>
     );
   }

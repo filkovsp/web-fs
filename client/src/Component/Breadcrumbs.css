@@ -1,31 +1,13 @@
-/* ul.breadcrumbs {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-}
-
-ul.breadcrumbs > li {
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    color: #fff;
-}
-
-ul.breadcrumbs > li::before {
-    content: "/";
-    padding-right: 0.2rem;
-    margin-left: 0.2rem;
-} */
-
 .filemanager .breadcrumbs {
     color: #fff;
-    margin-left:20px;
-    font-size: 24px;
+    margin: 0.5em auto;
+    font-size: 1.5em;
     font-weight: 700;
-    line-height: 35px;
+    line-height: 1.3em;
     display: flex;
     flex-direction: row;
     list-style: none;
+    flex-wrap: wrap;
 }
 
 .breadcrumbs > li {
@@ -36,8 +18,8 @@ ul.breadcrumbs > li::before {
 
 .breadcrumbs > li::before {
   content: "/";
-  padding-right: 0.3rem;
-  margin-left: 0.3rem;
+  padding-right: 0.3em;
+  margin-left: 0.3em;
   text-decoration: none;
   display:inline-block;
 }

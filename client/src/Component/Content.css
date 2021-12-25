@@ -14,8 +14,7 @@ ul.data.animated {
 
 @media all and (max-width: 965px) {
     .filemanager {
-        margin: 30px auto 0;
-        padding: 1px;
+        margin: 0.5em auto;
     }
 }
 
@@ -23,33 +22,15 @@ ul.data.animated {
     Content area
 -------------------------*/
 .filemanager .data {
-    margin-top: 30px;
+    margin-top: 0.8em;
     z-index: -3;
+}
+
+.filemanager .data div {
+    z-index: 1;
 }
 
 .filemanager .data.animated {
     -webkit-animation: showSlowlyElement 700ms; /* Chrome, Safari, Opera */
     animation: showSlowlyElement 700ms; /* Standard syntax */
-}
-
-.filemanager .data .files,
-.filemanager .data .folders {
-    border-radius: 3px;
-    background-color: #373743;
-    width: 707px;
-    height: 80px;
-    margin: 10px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: 0.3s background-color;
-    display: flex;
-    flex-direction: row;
-}
-
-.filemanager .data .files:hover,
-.filemanager .data .folders:hover {
-    background-color: #42424E;
 }
