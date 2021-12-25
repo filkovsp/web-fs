@@ -22,7 +22,8 @@ export default function Content({ path }) {
   };
 
   useEffect(() => {
-    fetch(`http://${self.hostname}:${self.serverPort}/content?path=${path}`)
+    const url = `${self.protocol}://${self.hostname}:${self.serverPort}/content?path=${path}`;
+    fetch(url)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
@@ -53,7 +54,7 @@ export default function Content({ path }) {
             })}
           </ul>
         </div>
-        { isOpen && <Overlay closeOverlay={closeOverlay}></Overlay>}
+        { isOpen && <Overlay url={contentLink.current} closeOverlay={closeOverlay}></Overlay>}
       </>
     );
   }

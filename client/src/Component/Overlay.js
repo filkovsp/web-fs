@@ -1,10 +1,10 @@
 import "./Overlay.css";
 
-export default function Overlay({ closeOverlay }) {
+export default function Overlay({ url, closeOverlay }) {
   return <div className="overlay-wrapper" onClick={closeOverlay}>
     <div className="overlay-backdrop">
       <div className="overlay-content">
-        Hello!
+        {url}
       </div>
     </div>
   </div>
