@@ -1,0 +1,19 @@
+.viewer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewer .title {
+    margin: 0.5em auto;
+}
+
+.viewer .link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #44afa6;
+}
