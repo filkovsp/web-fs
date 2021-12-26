@@ -7,7 +7,7 @@ import LocationContext from './Context/LocationContext';
 const self = {
   protocol: "http",
   hostname: window.location.hostname,
-  clientPosrt: 3000,
+  clientPort: 3000,
   serverPort: 3010
 }
 
