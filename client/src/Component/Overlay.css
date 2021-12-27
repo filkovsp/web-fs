@@ -30,6 +30,7 @@
     height: 85%;
     position: relative;
     margin: auto;
+    padding: 3px;
     transition: opacity 0.85s;
     max-width: 90vw;
     max-height: 90vh;
