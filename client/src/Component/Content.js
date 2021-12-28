@@ -22,7 +22,7 @@ export default function Content({ path }) {
   };
 
   useEffect(() => {
-    const url = `${self.protocol}://${self.hostname}:${self.serverPort}/content?path=${path}`;
+    const url = `${self.protocol}//${self.hostname}:${self.serverPort}/content?path=${path}`;
     fetch(url)
       .then((response) => {
         if (response.status === 200) {

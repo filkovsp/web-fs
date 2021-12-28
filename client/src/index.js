@@ -5,9 +5,10 @@ import Content from './Component/Content';
 import LocationContext from './Context/LocationContext';
 
 const self = {
-  protocol: "http",
+  protocol: window.location.protocol,
   hostname: window.location.hostname,
-  clientPort: 3000,
+
+  // todo: this should come from .env file, that must be done with webpack
   serverPort: 5000
 }
 
