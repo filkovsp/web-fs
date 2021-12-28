@@ -8,7 +8,7 @@ const self = {
   protocol: "http",
   hostname: window.location.hostname,
   clientPort: 3000,
-  serverPort: 3010
+  serverPort: 5000
 }
 
 ReactDOM.render(

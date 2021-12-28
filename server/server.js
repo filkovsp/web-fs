@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
+require('dotenv').config({path: '../.env'});
 const prettyBytes = require('pretty-bytes');
 
 app.use(cors());
@@ -14,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
-
 
 app.get("/", function(request, response) {
   const homePath = "home";
@@ -51,28 +51,33 @@ app.get("/content", function(request, response) {
               name: path.parse(contentPath).name,
               type: "folder",
               path: request.query.path,
-              items: listing.length == 0 ? [] : listing.map(item => {  
-                const itemInfo = new Object();
-                // assign default properties:
-                Object.assign(itemInfo, {
-                  name: item.name,
-                  path: `${request.query.path}/${item.name}`
-                });
+              items: listing.length == 0 ? [] : listing
+                // hide items that have name starting with `.`:
+                .filter(item => !String(item.name).startsWith("."))
+                // for the rest of the items collect and map the necessary info:
+                .map(item => {
+                  const itemInfo = new Object();
+                  // assign default properties:
+                  Object.assign(itemInfo, {
+                    name: item.name,
+                    path: `${request.query.path}/${item.name}`
+                  });
 
-                if(item.isFile()) {
-                  // assign file-specific prperties:
-                  Object.assign(itemInfo, {
-                    type: "file",
-                    size: prettyBytes(fs.lstatSync(`${contentPath}/${item.name}`).size),
-                  });
-                } else {
-                  // assign folder-specific prperties:
-                  Object.assign(itemInfo, {
-                    type: "folder"
-                  });
-                }
-                return itemInfo;
-              }).sort(function(a, b){
+                  if(item.isFile()) {
+                    // assign file-specific prperties:
+                    Object.assign(itemInfo, {
+                      type: "file",
+                      size: prettyBytes(fs.lstatSync(`${contentPath}/${item.name}`).size),
+                    });
+                  } else {
+                    // assign folder-specific prperties:
+                    Object.assign(itemInfo, {
+                      type: "folder"
+                    });
+                  }
+                  return itemInfo;
+              })
+              .sort(function(a, b){
                 if(a.type === "folder" && b.type === "file") { return -1; }
                 if(a.type === "file" && b.type === "folder") { return 1; }
                 if(a.name < b.name) { return -1; }
@@ -97,7 +102,7 @@ app.get("/content", function(request, response) {
     
 });
 
-app.listen(3010, function() {
+app.listen(process.env.SERVER_PORT || 3010, function() {
     console.log(`server is running on port ${this.address().port}!`);
 });
 
