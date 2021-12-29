@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import ResponsivePlayer from 'react-player';
 import "./Viewer.css";
 

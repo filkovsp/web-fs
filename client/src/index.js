@@ -7,15 +7,13 @@ import LocationContext from './Context/LocationContext';
 const self = {
   protocol: window.location.protocol,
   hostname: window.location.hostname,
-
-  // todo: this should come from .env file, that must be done with webpack
-  serverPort: 5000
+  serverPort: process.env.BACKEND_PORT
 }
 
 ReactDOM.render(
   <React.StrictMode>
     <LocationContext.Provider value={self}>
-      <Content path={"home"}/>
+      <Content path="home"/>
     </LocationContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')

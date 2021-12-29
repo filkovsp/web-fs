@@ -1,3 +1,4 @@
+import React from "react";
 import "./Overlay.css";
 import Viewer from "./ViewerFactory";
 
