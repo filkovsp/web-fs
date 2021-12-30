@@ -28,7 +28,6 @@
 .overlay-content {
     width: 85%;
     height: 85%;
-    position: relative;
     margin: auto;
     padding: 3px;
     transition: opacity 0.85s;
@@ -39,16 +38,18 @@
     color: #DADDE1;
     text-align: center;
     background-color: rgba(10, 10, 10, 1.0);
+    position: relative;
+    z-index: 10010;
 }
 
 .overlay-close-btn {
     color: #dadde1;
     position: absolute;
-    top: 0.3em;
+    margin: 0.2rem 0;
     right: 2em;
     cursor: pointer;
 }
 
 .overlay-close-btn:hover::before {
-    content: "(x) ";
+    content: "(close) ";
 }

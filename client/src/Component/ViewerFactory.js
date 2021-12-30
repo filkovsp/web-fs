@@ -44,7 +44,9 @@ export default function Viewer ({url}) {
     case "jpg":
     case "jpeg":
       return <div className="viewer">
-        <img alt={url.split("path=").at(1)} src={url}/>
+        <img src={url}
+             alt={url.split("path=").at(1)}
+             style={{maxWidth:"100%", maxHeight: "100%"}}/>
       </div>
 
     case "mp3":
