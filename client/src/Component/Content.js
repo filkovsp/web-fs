@@ -46,12 +46,10 @@ export default function Content({ path }) {
           <Breadcrumbs path={files.path} setPath={setFiles} />
           <div className="data animated">
             {files.items.map((item, idx) => {
-              const key = `${idx}${item.name.replaceAll(/[^a-z0-9]+/gi, "")}`;
+              const key = `${idx}${item.path.replaceAll(/[^a-z0-9]+/gi, "")}`;
               return (
-                <>
                   <ContentItem key={key} item={item} setPath={setFiles} openHandle={openOverlay}/>
-                </>
-              );
+                );
             })}
           </div>
         </div>
