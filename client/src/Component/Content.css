@@ -1,20 +1,17 @@
-ul.data.animated {
-    list-style-type: none;
-}
-
 /*-------------------------
     File manager
 -------------------------*/
 .filemanager {
     position: relative;
     margin: 1.6em auto;
-    width: 95vw;
     height: 95vh;
+    max-width: 80%;
 }
 
 @media all and (max-width: 965px) {
     .filemanager {
-        margin: 0.5em auto;
+        margin: 0.5rem auto;
+        max-width: 95%;
     }
 }
 
@@ -23,14 +20,21 @@ ul.data.animated {
 -------------------------*/
 .filemanager .data {
     margin-top: 0.8em;
-    z-index: -3;
-}
-
-.filemanager .data div {
-    z-index: 1;
 }
 
 .filemanager .data.animated {
     -webkit-animation: showSlowlyElement 700ms; /* Chrome, Safari, Opera */
     animation: showSlowlyElement 700ms; /* Standard syntax */
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes showSlowlyElement {
+    100%       { transform: scale(1); opacity: 1; }
+    0%         { transform: scale(1.2); opacity: 0; }
+}
+
+/* Standard syntax */
+@keyframes showSlowlyElement {
+    100%       { transform: scale(1); opacity: 1; }
+    0%         { transform: scale(1.2); opacity: 0; }
 }

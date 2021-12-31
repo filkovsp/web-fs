@@ -1,54 +1,49 @@
 
-.filemanager .data .files,
-.filemanager .data .folders {
+.filemanager .data .fileItem,
+.filemanager .data .folderItem {
     border-radius: 3px;
     background-color: #373743;
-    width: 90vw;
-    height: 5.5em;
-    margin: 0.7em;
+    width: 100%;
+    height: 5.5rem;
+    margin: 0.7rem 0;
     position: relative;
-    overflow: hidden;
     cursor: pointer;
-    box-sizing: border-box;
     transition: 0.3s background-color;
     display: flex;
-    flex-direction: row;
     align-items: center;
 }
 
-.filemanager .data .files:hover,
-.filemanager .data .folders:hover {
+.filemanager .data .fileItem:hover,
+.filemanager .data .folderItem:hover {
     background-color: #42424E;
 }
 
 /* -------------------
     Content Items:
    ------------------- */
-.filemanager .data .name,
-.filemanager .data .details {
-    display: inline-block;
+.filemanager .data .info {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0.6em;
+    width: 100%;
+}
+
+.filemanager .data .info .name,
+.filemanager .data .info .size {
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.filemanager .data .name {
+.filemanager .data .info .name {
     color: #ffffff;
     font-size: 1.2em;
-    font-weight: 700;
-    line-height: 1.3em;
+    font-weight: 400;
+    line-height: 1.3rem;
     white-space: nowrap;
     width: 90%;
 }
 
-.filemanager .data .info {
-    display: flex;
-    flex-direction: column;
-    margin: 1.0em 0.6em;
-    width: 80%;
-    flex-grow: 1;
-}
-
-.filemanager .data .info .details{
+.filemanager .data .info .size {
     color: bisque;
     margin-top: 0.5em;
 }
@@ -57,9 +52,10 @@
         Icons
 -------------------------*/
 .icon-container {
-    max-width: 5.0em;
+    max-width: 5.0rem;
     display: flex;
     justify-content: center;
+    z-index: 1;
 }
 
 .icon {
@@ -115,11 +111,11 @@
     margin-left: 0.7em;
     position: relative;
     overflow: hidden;
-    box-shadow: 1.74em -2.1em 0 0 #A4A7AC inset;
+    box-shadow: 2.35rem -2.55rem 0 0 #a4a7ac inset;
 }
 .icon.file:first-line {
     font-size: 0.8em;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .icon.file.before {
@@ -130,14 +126,12 @@
 .icon.file:after {
     content: '';
     position: absolute;
-    z-index: -1;
     border-width: 0;
-    border-bottom: 2.6em solid #DADDE1;
+    border-bottom: 2.6em solid #dadde1;
     border-right: 2.22em solid rgba(0, 0, 0, 0);
     top: -34.5px;
     right: -4px;
-    /*width: 3em;*/
-    /*height: 2.25em;*/
+    z-index: -1;
 }
 
 .icon.file.f-avi,
@@ -148,9 +142,11 @@
 .icon.file.f-mpg,
 .icon.file.f-mp4,
 .icon.file.f-m4v,
-.icon.file.f-wmv {
-    box-shadow: 1.74em -2.1em 0 0 #7e70ee inset;
+.icon.file.f-wmv,
+.icon.file.f-webm {
+    box-shadow: 2.35rem -2.55rem 0 0 #7e70ee inset;
 }
+
 .icon.file.f-avi:after,
 .icon.file.f-flv:after,
 .icon.file.f-mkv:after,
@@ -159,7 +155,8 @@
 .icon.file.f-mpg:after,
 .icon.file.f-mp4:after,
 .icon.file.f-m4v:after,
-.icon.file.f-wmv:after {
+.icon.file.f-wmv:after,
+.icon.file.f-webm:after {
     border-bottom-color: #5649c1;
 }
 
@@ -169,7 +166,7 @@
 .icon.file.f-wma,
 .icon.file.f-xls,
 .icon.file.f-xlsx {
-    box-shadow: 1.74em -2.1em 0 0 #5bab6e inset;
+    box-shadow: 2.35rem -2.55rem 0 0 #5bab6e inset;
 }
 .icon.file.f-mp2:after,
 .icon.file.f-mp3:after,
@@ -183,7 +180,7 @@
 .icon.file.f-doc,
 .icon.file.f-docx,
 .icon.file.f-psd{
-    box-shadow: 1.74em -2.1em 0 0 #03689b inset;
+    box-shadow: 2.35rem -2.55rem 0 0 #03689b inset;
 }
 
 .icon.file.f-doc:after,
@@ -197,7 +194,7 @@
 .icon.file.f-jpeg,
 .icon.file.f-pdf,
 .icon.file.f-png {
-    box-shadow: 1.74em -2.1em 0 0 #e15955 inset;
+    box-shadow: 2.35rem -2.55rem 0 0 #e15955 inset;
 }
 .icon.file.f-gif:after,
 .icon.file.f-jpg:after,
@@ -213,7 +210,7 @@
 .icon.file.f-rar,
 .icon.file.f-zip,
 .icon.file.f-7z {
-    box-shadow: 1.74em -2.1em 0 0 #867c75 inset;
+    box-shadow: 2.35rem -2.55rem 0 0 #867c75 inset;
 }
 .icon.file.f-deb:after,
 .icon.file.f-dmg:after,
@@ -228,7 +225,7 @@
 .icon.file.f-rtf,
 .icon.file.f-xml,
 .icon.file.f-xhtml {
-    box-shadow: 1.74em -2.1em 0 0 #a94bb7 inset;
+    box-shadow: 2.35rem -2.55rem 0 0 #a94bb7 inset;
 }
 .icon.file.f-html:after,
 .icon.file.f-rtf:after,
@@ -238,7 +235,7 @@
 }
 
 .icon.file.f-js {
-    box-shadow: 1.74em -2.1em 0 0 #d0c54d inset;
+    box-shadow: 2.35rem -2.55rem 0 0 #d0c54d inset;
 }
 .icon.file.f-js:after {
     border-bottom-color: #a69f4e;
@@ -247,7 +244,7 @@
 .icon.file.f-css,
 .icon.file.f-saas,
 .icon.file.f-scss {
-    box-shadow: 1.74em -2.1em 0 0 #44afa6 inset;
+    box-shadow: 2.35rem -2.55rem 0 0 #44afa6 inset;
 }
 .icon.file.f-css:after,
 .icon.file.f-saas:after,

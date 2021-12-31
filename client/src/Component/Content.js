@@ -44,15 +44,16 @@ export default function Content({ path }) {
       <>
         <div className="filemanager">
           <Breadcrumbs path={files.path} setPath={setFiles} />
-          <ul className="data animated">
+          <div className="data animated">
             {files.items.map((item, idx) => {
+              const key = `${idx}${item.name.replaceAll(/[^a-z0-9]+/gi, "")}`;
               return (
-                <li key={`${idx}${item.name.replaceAll(/[^a-z0-9]+/gi, "")}`}>
-                  <ContentItem key={idx} item={item} setPath={setFiles} openHandle={openOverlay}/>
-                </li>
+                <>
+                  <ContentItem key={key} item={item} setPath={setFiles} openHandle={openOverlay}/>
+                </>
               );
             })}
-          </ul>
+          </div>
         </div>
         { isOpen && <Overlay url={contentLink.current} closeOverlay={closeOverlay}></Overlay>}
       </>

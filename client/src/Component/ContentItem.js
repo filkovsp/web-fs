@@ -24,7 +24,7 @@ export default function ContentItem({ item, setPath, openHandle }) {
 
   if (item.type === "folder") {
     return (
-      <div className="folders" 
+      <div className="folderItem"
         onClick={() => {
           folderClickHandler(url);
         }}>
@@ -39,13 +39,13 @@ export default function ContentItem({ item, setPath, openHandle }) {
   } else {
     const fileExt = item.name.split(".").at(-1);
     return (
-      <div className="files" onClick={() => openHandle(url)}>
+      <div className="fileItem" onClick={() => openHandle(url)}>
         <div className="icon-container">
           <span className={`icon file f${"-".concat(fileExt)}`}>{fileExt.length < 5 ? fileExt : ""}</span>
         </div>
         <div className="info">
             <span className="name">{item.name}</span>
-            <span className="details">{item.size}</span>
+            <span className="size">{item.size}</span>
         </div>
       </div>
     );
