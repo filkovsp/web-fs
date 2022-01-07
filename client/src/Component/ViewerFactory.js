@@ -29,6 +29,23 @@ export default function Viewer ({url}) {
     case "txt":
     case "pdf":
       return <div className="viewer">
+        {
+          /**
+           * Could have been embed element,
+           * but this doesn't allow to download content on mobile device
+           * in Chrome:
+           *
+             <embed
+               name={url.split("/").at(-1)}
+               style={ {position: "absolute", left: 0, top: 0} }
+               width="100%" height="100%"
+               src={url}
+               type="application/pdf"
+               internalid="29F3F49BD1EC13383AF8C9EF7E98430B" />
+           *
+           * <iframe/> seems works fine:
+           */
+        }
         <iframe className="viewer-frame"
                 frameBorder="0" vspace="0" hspace="0"
                 name={url.split("/").at(-1)}
@@ -44,9 +61,12 @@ export default function Viewer ({url}) {
     case "jpg":
     case "jpeg":
       return <div className="viewer">
-        <img src={url}
-             alt={url.split("path=").at(1)}
-             style={{maxWidth:"100%", maxHeight: "100%"}}/>
+        <div className="title">{url.split("/").at(-1)}</div>
+        <div className="media">
+          <img src={url}
+               alt={url.split("path=").at(1)}
+               style={{maxWidth:"100%", maxHeight: "100%"}}/>
+        </div>
       </div>
 
     case "mp3":
@@ -55,13 +75,16 @@ export default function Viewer ({url}) {
     case "mkv":
       return <div className="viewer">
         <div className="title">{url.split("/").at(-1)}</div>
-        <ResponsivePlayer
-          url={url}
-          playing={true}
-          controls={true}
-          width='90%'
-          height='90%'
-        />
+        <div className = "media">
+          <ResponsivePlayer
+            id = "player"
+            url={url}
+            playing={true}
+            controls={true}
+            width='100%'
+            height='100%'
+          />
+        </div>
       </div>
 
     default:

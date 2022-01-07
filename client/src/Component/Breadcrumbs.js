@@ -27,7 +27,7 @@ function Breadcrumbs({ path, setPath }) {
         return (
           <li
             className="folderName"
-            key={`${idx}${folder.replaceAll(/[^a-z0-9]+/gi, "")}`}
+            key={`${idx}${folder.replace(/[^a-z0-9]+/gi, "")}`}
             onClick={() => {
               const url = `${self.protocol}//${self.hostname}:${self.serverPort}/content?path=${arr.slice(0, idx + 1).join("/")}`;
               folderClickHandler(url);

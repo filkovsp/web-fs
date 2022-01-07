@@ -10,19 +10,7 @@
     display: block;
     background-color: rgba(50, 50, 50, 0.8);
     background-repeat: no-repeat;
-    overflow: hidden;
     transition: 0.5s;
-}
-
-.overlay-backdrop {
-    overflow: auto;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    width: 100vw;
-    height: 100vh;
-    z-index: 10001;
-    position: relative;
 }
 
 .overlay-content {
@@ -31,25 +19,14 @@
     margin: auto;
     padding: 3px;
     transition: opacity 0.85s;
-    max-width: 90vw;
-    max-height: 90vh;
-    border: solid 1px #DADDE1;
+    border: solid 1px #dadde1;
     border-radius: 0.5em;
-    color: #DADDE1;
-    text-align: center;
-    background-color: rgba(10, 10, 10, 1.0);
-    position: relative;
-    z-index: 10010;
-}
-
-.overlay-close-btn {
     color: #dadde1;
+    background-color: rgba(10, 10, 10, 1.0);
     position: absolute;
-    margin: 0.2rem 0;
-    right: 2em;
-    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
 }
 
-.overlay-close-btn:hover::before {
-    content: "(close) ";
-}

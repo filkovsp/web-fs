@@ -2,9 +2,8 @@
     File manager
 -------------------------*/
 .filemanager {
-    position: relative;
-    margin: 1.6em auto;
-    height: 95vh;
+    margin: 1.0em auto;
+    height: 95%;
     max-width: 80%;
 }
 
