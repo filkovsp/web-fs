@@ -24,16 +24,18 @@ yarn install
 ```sh
 yarn start
 ```
-### Optional:
-* Add new dependency:
-    ```sh
-    yarn add react react-dom
-    ```
-* Start client only:
-    ```sh
-    yarn --cwd client start
-    ```
-* Start server only:
-    ```sh
-    yarn --cwd client start
-    ```
+### Customise PATHs for your needs
+```sh
+[ web-fs ]
+    |- [ client ]
+    |       |- .env.development
+    |               ROOT_PATH
+    |
+    |- [ server ]
+    |       |- .env
+    |               HOME_PATH - relative or absolut path to your files 
+    |               ROOT_PATH - root folder where your files are located
+
+path for files at the server: HOME_PATH/ROOT_PATH
+path for files from client's side: GET /content?path=ROOT_PATH
+```

@@ -17,14 +17,16 @@ app.use(express.urlencoded({
 }));
 
 app.get("/", function(request, response) {
-  const homePath = "home";
+  const rootPath = process.env.ROOT_PATH || "@home";
   response.format({
     "text/html": () => response.status(200).send(`
-        <style>* {font-size: medium; font-family: Helvetica; line-height: 1.6;}</style>
+        <style>* {font-size: medium; font-family: Helvetica,sans-serif; line-height: 1.6;}</style>
         <b>usage</b>:
         <ul>
             <li>
-              <a href="/content?path=${homePath}">${request.protocol}://${request.headers.host}/content?path=${homePath}</a>
+              <a href="/content?path=${rootPath}">
+                ${request.protocol}://${request.headers.host}/content?path=${rootPath}
+              </a>
             </li>
         </ul>`)
   });
@@ -32,11 +34,18 @@ app.get("/", function(request, response) {
 
 app.get("/content", function(request, response) {
   if(!Object.keys(request.query).includes("path")) {
-    response.status(400).send("`path` query param is expeted!");
+    response.status(400).send("`path` query param is expected!");
     return;
   }
 
-  const contentPath = path.join(__dirname, `../@${request.query.path}`);
+  const basePath = process.env.HOME_PATH || "../";
+
+  let contentPath;
+  if (path.isAbsolute(basePath)) {
+    contentPath = path.join(basePath, request.query.path);
+  } else {
+    contentPath = path.join(__dirname, path.join(basePath, request.query.path));
+  }
 
   if (fs.existsSync(contentPath)) {
     try {
@@ -51,12 +60,12 @@ app.get("/content", function(request, response) {
               name: path.parse(contentPath).name,
               type: "folder",
               path: request.query.path,
-              items: listing.length == 0 ? [] : listing
+              items: listing.length === 0 ? [] : listing
                 // hide items that have name starting with `.`:
                 .filter(item => !String(item.name).startsWith("."))
                 // for the rest of the items collect and map the necessary info:
                 .map(item => {
-                  const itemInfo = new Object();
+                  const itemInfo = {};
                   // assign default properties:
                   Object.assign(itemInfo, {
                     name: item.name,
@@ -89,6 +98,7 @@ app.get("/content", function(request, response) {
         });
 
       } else {
+        response.setHeader('Content-Disposition', 'filename=' + path.basename(contentPath));
         response.sendFile(contentPath);
       }
 
@@ -102,7 +112,7 @@ app.get("/content", function(request, response) {
     
 });
 
-app.listen(process.env.SERVER_PORT || 3010, function() {
+app.listen(process.env.SERVER_PORT || 5000, function() {
     console.log(`server is running on port ${this.address().port}!`);
 });
 
