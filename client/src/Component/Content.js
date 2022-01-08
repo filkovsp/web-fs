@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext, useRef, useLayoutEffect } from "react";
 import ContentItem from "./ContentItem";
 import Breadcrumbs from "./Breadcrumbs";
 import LocationContext from "../Context/LocationContext";
@@ -39,10 +39,15 @@ export default function Content({ path }) {
       });
   }, [path, self]);
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [files]);
+
   if (files !== null) {
     return (
       <>
         <div className="filemanager">
+          {/*<a id="top" style={{display:"none"}} />*/}
           <Breadcrumbs path={files.path} setPath={setFiles} />
           <div className="data animated">
             {files.items.map((item, idx) => {
@@ -53,10 +58,10 @@ export default function Content({ path }) {
             })}
           </div>
         </div>
-        { isOpen && <Overlay url={contentLink.current} closeOverlay={closeOverlay}></Overlay>}
+        { isOpen && <Overlay url={contentLink.current} closeOverlay={closeOverlay} />}
       </>
     );
   }
 
-  return <div className="filemanager"></div>;
+  return <div className="filemanager" />;
 }
