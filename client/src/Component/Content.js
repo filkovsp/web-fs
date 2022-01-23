@@ -47,7 +47,6 @@ export default function Content({ path }) {
     return (
       <>
         <div className="filemanager">
-          {/*<a id="top" style={{display:"none"}} />*/}
           <Breadcrumbs path={files.path} setPath={setFiles} />
           <div className="data animated">
             {files.items.map((item, idx) => {

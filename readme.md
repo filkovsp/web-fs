@@ -25,16 +25,16 @@ yarn install
 yarn start
 ```
 ### Customise PATHs for your needs
-```sh
+```
 [ web-fs ]
+    |- [ @home ]
     |- [ client ]
-    |       |- .env.development
-    |               ROOT_PATH
-    |
     |- [ server ]
-    |       |- .env
-    |               HOME_PATH - relative or absolut path to your files 
-    |               ROOT_PATH - root folder where your files are located
+    |- .env
+    |     HOME_PATH - relative (for server.js) or absolute path to the folder that contains `home` for your files
+    |     ROOT_PATH - root folder for your filease, that located inside HOME_PATH
+    |     so HOME_PATH/ROOT_PATH makes the exact location of your files.
+    |     HOME_PATH might have other folders inside, but only ROOT is mapped to the server's api.
 
 path for files at the server: HOME_PATH/ROOT_PATH
 path for files from client's side: GET /content?path=ROOT_PATH

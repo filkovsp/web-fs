@@ -3,8 +3,17 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
-require('dotenv').config({path: './.env'});
 const prettyBytes = require('pretty-bytes');
+
+const paths = {
+  dotenv: path.resolve(__dirname, '..', '.env.dev'),
+};
+
+if (fs.existsSync(path.join(__dirname, '..', '.env.local'))) {
+  paths.dotenv = path.resolve(__dirname, '..', '.env.local');
+};
+
+require('dotenv').config({path: paths.dotenv});
 
 app.use(cors());
 
@@ -17,6 +26,7 @@ app.use(express.urlencoded({
 }));
 
 app.get("/", function(request, response) {
+  // see readme.md file for more information about usage of ROOT_PATH
   const rootPath = process.env.ROOT_PATH || "@home";
   response.format({
     "text/html": () => response.status(200).send(`
@@ -24,10 +34,15 @@ app.get("/", function(request, response) {
         <b>usage</b>:
         <ul>
             <li>
-              <a href="/content?path=${rootPath}">
+              directly: <a href="/content?path=${rootPath}">
                 ${request.protocol}://${request.headers.host}/content?path=${rootPath}
               </a>
             </li>
+            <li>
+              through <b>api</b> proxy: <a href="/api/content?path=${rootPath}">
+                ${request.protocol}://${request.hostname}/api/content?path=${rootPath}
+              </a>
+          </li>
         </ul>`)
   });
 });
@@ -38,6 +53,7 @@ app.get("/content", function(request, response) {
     return;
   }
 
+  // see readme.md file for more information about usage of HOME_PATH
   const basePath = process.env.HOME_PATH || "../";
 
   let contentPath;
