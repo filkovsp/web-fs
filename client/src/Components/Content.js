@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useContext, useRef, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import ContentItem from "./ContentItem";
 import Breadcrumbs from "./Breadcrumbs";
-import LocationContext from "../Context/LocationContext";
 import Overlay from "./Overlay";
 import "./Content.css";
 
 export default function Content({ path }) {
   const [files, setFiles] = useState(null);
   const contentLink = useRef(null);
-  const self = useContext(LocationContext);
-
   const [isOpen, setOverlay] = useState(false);
+  
   const closeOverlay = () => {
     setOverlay(false);
     contentLink.current = null;
@@ -22,7 +20,7 @@ export default function Content({ path }) {
   };
 
   useEffect(() => {
-    const url = `${self.protocol}//${self.hostname}:${self.serverPort}/content?path=${path}`;
+    const url = `/api/content?path=${path}`;
     fetch(url)
       .then((response) => {
         if (response.status === 200) {

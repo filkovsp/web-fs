@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import LocationContext from "../Context/LocationContext";
+import React from "react";
 import "./ContentItem.css";
 
 export default function ContentItem({ item, setPath, openHandle }) {
-  const self = useContext(LocationContext);
-  const url = `${self.protocol}//${self.hostname}:${self.serverPort}/content?path=${item.path}`;
+  const url = `/api/content?path=${item.path}`;
+  
   const folderClickHandler = (path) => {
     fetch(path)
       .then((response) => {

@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
-import LocationContext from "../Context/LocationContext";
+import React from "react";
 import "./Breadcrumbs.css";
 
 function Breadcrumbs({ path, setPath }) {
-  const self = useContext(LocationContext);
   const folderClickHandler = (path) => {
     fetch(path)
       .then((response) => {
@@ -29,7 +27,7 @@ function Breadcrumbs({ path, setPath }) {
             className="folderName"
             key={`${idx}${folder.replace(/[^a-z0-9]+/gi, "")}`}
             onClick={() => {
-              const url = `${self.protocol}//${self.hostname}:${self.serverPort}/content?path=${arr.slice(0, idx + 1).join("/")}`;
+              const url = `/api/content?path=${arr.slice(0, idx + 1).join("/")}`;
               folderClickHandler(url);
             }}
           >

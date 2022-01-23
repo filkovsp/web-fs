@@ -1,21 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Content from './Component/Content';
-import LocationContext from './Context/LocationContext';
+import Content from './Components/Content';
 
-const self = {
-  protocol: window.location.protocol,
-  hostname: window.location.hostname,
-  serverPort: process.env.BACKEND_PORT || 5000,
-  rootPath: process.env.ROOT_PATH || "@home"
-}
+const rootPath = process.env.ROOT_PATH || "@home";
 
 ReactDOM.render(
   <React.StrictMode>
-    <LocationContext.Provider value={self}>
-      <Content path={self.rootPath} />
-    </LocationContext.Provider>
+    <Content path={rootPath} />
   </React.StrictMode>,
   document.getElementById('root')
 );
