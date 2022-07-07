@@ -114,7 +114,7 @@ app.get("/content", function(request, response) {
         });
 
       } else {
-        response.setHeader('Content-Disposition', 'filename=' + path.basename(contentPath));
+        response.setHeader('Content-Disposition', 'attachment;filename=' + encodeURI(path.basename(contentPath)));
         response.sendFile(contentPath);
       }
 
